@@ -1,16 +1,5 @@
-import * as readline from "readline";
+let str: string = prompt("Enter a sentence") || "";
 
-export function removeAllSpaces(input: string): string {
-  return input.replace(/\s+/g, "");
-}
+let result = str.replace(/\s/g, "");
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
-rl.question("Enter a sentence with spaces: ", (text: string) => {
-  const formatted = removeAllSpaces(text);
-  console.log(`Result without spaces: "${formatted}"`);
-  rl.close();
-});
+console.log(result);
