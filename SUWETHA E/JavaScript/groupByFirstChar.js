@@ -1,36 +1,13 @@
-const readline = require("readline");
+const words = prompt("Enter words:").split(" ");
+const map = {};
 
-function groupWordsByFirstCharacter(words) {
-  const groupedMap = new Map();
+for (let word of words) {
+    let ch = word[0].toLowerCase();
 
-  for (const word of words) {
-    const trimmed = word.trim();
-    if (trimmed.length === 0) continue;
+    if (!map[ch])
+        map[ch] = [];
 
-    const firstChar = trimmed[0].toLowerCase();
-
-    if (!groupedMap.has(firstChar)) {
-      groupedMap.set(firstChar, []);
-    }
-    groupedMap.get(firstChar).push(trimmed);
-  }
-
-  return groupedMap;
+    map[ch].push(word);
 }
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
-rl.question("Enter words separated by spaces: ", (input) => {
-  const words = input.split(/\s+/);
-  const result = groupWordsByFirstCharacter(words);
-
-  console.log("\nGrouped words:");
-  for (const [char, list] of result.entries()) {
-    console.log(`'${char}' -> [ ${list.join(", ")} ]`);
-  }
-
-  rl.close();
-});
+console.log(map);
